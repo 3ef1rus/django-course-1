@@ -7,6 +7,9 @@ class Category(models.Model):
     titel = models.CharField(max_length=255)
     created_at = models.DateTimeField(default=timezone.now)
 
+    def __str__(self) -> str:
+        return self.titel
+
 
 class Course(models.Model):
     titel = models.CharField(max_length=255)
@@ -15,3 +18,6 @@ class Course(models.Model):
     reviews_qty = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self) -> str:
+        return self.titel
