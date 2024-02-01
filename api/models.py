@@ -18,6 +18,8 @@ class CourseResource(ModelResource):
         queryset = Course.objects.all()
         resource_name = 'courses'
         allowed_methods = ['get', 'post', 'delete']
+        # в нижнем атрибуте можно убрать значения которые вы не хотите выводить пользователю в запросе get
+        excludes = ['created_at']
         authetication = CustomAuthetication()
         authorization = Authorization()
 
@@ -26,7 +28,7 @@ class CourseResource(ModelResource):
         return bundle
 
     def dehydrate(self, bundle):
-        bundle.data['category_id'] = bundle.obj.category
+        bundle.data['category_id'] = bundle.obj.category_id
         return bundle
 
     # def dehydrate_titel(self, bundle):  # пример изменения вывода данных при запросе get
